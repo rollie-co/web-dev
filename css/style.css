@@ -38,6 +38,8 @@ body {
     }
 .nav {
       grid-area: nav;
+      grid-column: 2/6;
+      grid-row: 1;
       background: #fde4d6;
       border: 1px solid #000;
       display: flex;
