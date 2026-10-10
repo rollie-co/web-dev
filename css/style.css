@@ -9,8 +9,8 @@ body{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  border : none;
 }
+
 .header{
    display: flex;
    border-bottom: 1px solid black;
@@ -55,9 +55,8 @@ flex: 1;
 .nav-links a:last-child{border-right: none;}
 
 .main{
-display: flex;
 flex: 1;
-justify-content:space-evenly;
+display: flex;
 }
 
 .left {
