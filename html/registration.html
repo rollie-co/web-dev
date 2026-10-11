@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration</title>
+    <script src="../js/register.js"></script>
+    <style>
+  body {
+    margin: 0;
+    height: 100vh;               
+    display: flex;
+    flex-direction: column;      
+    align-items: center;         
+    justify-content: center;     
+  }
+</style>
+</head>
+<body>
+    <h1>registration page</h1>
+
+    <form action = "#" method = "post">
+
+        <div classs="name">
+            <label for = "fullname"> full name</label>
+            <input type = "text" id = "username" name="username" required>
+        </div>
+
+        <div class = "mail">
+        <label for = "mail"> email</label>
+        <input type ="email" id = "email" name="email" required>
+        </div>
+
+        <div class = "phone">
+        <label for = "phone"> phone</label>
+        <input type ="number" id = "number" name="number" pattern=" [0-9]{10}" required>
+        </div>
+
+        <div class = "sex">
+        <label > gender</label>
+        <div class = " options ">
+
+        <input type ="radio" name="gender" value = "male" id ="m" >
+        <label for = "m" style="width:auto">male</label>
+
+        <input type ="radio" name = "gender" value ="female" id="f">
+        <label for="f" style = "width:auto">female</label>
+
+        <input type ="radio" name = "gender" value ="pata nhi" id="p">
+        <label for="p" style = "width:auto">pata nhi</label>
+        </div>
+        </div>
+
+        <div class = "dob">
+            <label for ="dob">date of birth</label>
+            <input type="date" id ="date">
+        </div>
+
+        <div class ="row">
+            <label for ="username">username</label>
+            <input type ="text" id ="username" name="username" required>
+        </div> 
+
+        <div class = "row">
+            <label for ="password">password</label>
+            <input type ="password" id="password" name ="password" required>
+        </div>
+
+        <div class = "row">
+            <label for ="c-password">confirm password</label>
+            <input type ="password" id="c-password" name ="c-password" required>
+        </div>
+
+        <input type ="submit" value ="register" class = "btn">
+        <input type ="reset" value = "clear" class = "btn";>
+    </form>
+</body>
+</html>

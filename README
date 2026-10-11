@@ -36,5 +36,21 @@ less design our first index/home page ->
     CONTENT: (in this our website description will be shown)
 
 2. create a new html files onto that our desiresd components will be there and link them accordingly in the NAV , MAIN divs------
-............................. 45% completed......................................................................................
+.................................................45%completed..........................................................................
 now w'll do the linking part , design the sub-html files, add some images ->
+
+1. create a new login page , registration page, catalogue , cart page html files
+2. now w'll adjust login page and register page becz hmra right corner me aa raha hai default to fix it by our <style> into html file
+
+3. important prt- w'll made a body and it need a soul to run so w'll add js files which will make it run as it should
+
+4. link them correctly and we can check by console.log("js connected") by this code into out js file andd 
+going to website and pressing F12 -> open console -> it should give (js connected)
+
+tht's it 
+
+5. mke the cataolgue page and onto tht w'll add the boook we wnted and there  informations
+6. link the add to cart button into cart button in our nav bar
+
+7. thts though prt do it properly
+.................................................60%completed...........................................................................
