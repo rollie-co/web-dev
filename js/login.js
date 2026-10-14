@@ -1,54 +1,66 @@
 const loginBox   = document.getElementById("loginBox");
-  const welcomeBox = document.getElementById("welcomeBox");
-  const msg        = document.getElementById("msg");
+const welcomeBox = document.getElementById("welcomeBox");
+const msg        = document.getElementById("msg");
 
-  function show(text, type) {
-    msg.textContent = text;
-    msg.className = "msg " + type;
-  }
+function show(text, type) {
+  msg.textContent = text;
+  msg.className = "msg " + type;
+}
 
-  function showWelcome(user) {
-    document.getElementById("welcomeText").textContent = "Welcome, " + user.name + "!";
-    loginBox.classList.add("hidden");
-    welcomeBox.classList.remove("hidden");
-  }
+function showWelcome(user) {
+  document.getElementById("welcomeText").textContent = "Welcome, " + user.name + "!";
+  loginBox.classList.add("hidden");
+  welcomeBox.classList.remove("hidden");
+}
 
-  try {
-    const current = JSON.parse(localStorage.getItem("currentUser"));
-    if (current) showWelcome(current);
-  } catch (err) {}
+function showLogin() {
+  welcomeBox.classList.add("hidden");
+  loginBox.classList.remove("hidden");
+}
 
-  document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+function getUsers() {
+  try { return JSON.parse(localStorage.getItem("users")) || []; }
+  catch (err) { return []; }
+}
 
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value;
+// Start: pehle login dikhao, phir check karo
+showLogin();
+try {
+  const current = JSON.parse(localStorage.getItem("currentUser"));
+  const stillExists = current && getUsers().some(u => u.username === current.username);
+  if (stillExists) showWelcome(current);
+  else localStorage.removeItem("currentUser");
+} catch (err) {}
 
-    if (!username || !password)
-      return show("User Name aur Password dono daalo.", "error");
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    let users = [];
-    try { users = JSON.parse(localStorage.getItem("users")) || []; } catch (err) {}
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
 
-    if (users.length === 0)
-      return show("Koi user registered nahi hai. Pehle Registration karo.", "error");
+  if (!username || !password)
+    return show("Username aur Password dono daalo.", "error");
 
-    const user = users.find(u =>
-      u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+  const users = getUsers();
+  if (users.length === 0)
+    return show("Koi user registered nahi hai. Pehle Registration karo.", "error");
 
-    if (!user)
-      return show("User Name ya Password galat hai.", "error");
+  const user = users.find(u =>
+    u.username.toLowerCase() === username.toLowerCase() && u.password === password);
 
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    showWelcome(user);
-  });
+  if (!user)
+    return show("Username ya Password galat hai.", "error");
 
-  document.getElementById("resetBtn").addEventListener("click", () => show("", ""));
+  localStorage.setItem("currentUser", JSON.stringify(user));
+  show("", "");
+  showWelcome(user);
+});
 
-  document.getElementById("logoutBtn").addEventListener("click", function () {
-    localStorage.removeItem("currentUser");
-    welcomeBox.classList.add("hidden");
-    loginBox.classList.remove("hidden");
-    document.getElementById("loginForm").reset();
-    show("", "");
-  });
+document.getElementById("resetBtn").addEventListener("click", () => show("", ""));
+
+document.getElementById("logoutBtn").addEventListener("click", function () {
+  localStorage.removeItem("currentUser");
+  document.getElementById("loginForm").reset();
+  show("", "");
+  showLogin();
+});
